@@ -1,6 +1,6 @@
 Blog
 ====
 
-Blog Code
+Blog Code - http://rahulpnath.com
 
-PhoneAppBarMvvm - http://rahulpnath.wordpress.com/2013/04/17/windows-phone-series-mvvm-and-applicationbar/
+PhoneAppBarMvvm - http://rahulpnath.com/blog/windows-phone-series-mvvm-and-applicationbar/
