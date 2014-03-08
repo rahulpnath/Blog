@@ -1,0 +1,114 @@
+﻿<phone:PhoneApplicationPage 
+    xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"  
+    x:Class="SimpleGPS.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Controls:Panorama>
+        <Controls:PanoramaItem Header="Map">
+            <Grid x:Name="LayoutRoot" Background="AliceBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--TitlePanel contains the name of the application and page title-->
+                <StackPanel Visibility="Collapsed" x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28" Background="AliceBlue">
+                    <TextBlock x:Name="ApplicationTitle" Text="Simple GPS" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF4C4CD4" />
+                    <TextBlock x:Name="PageTitle" Text="Get The Current Location" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="40" Foreground="#FF4C4CD4" />
+                </StackPanel>
+
+                <!--ContentPanel - place additional content here-->
+                <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="AliceBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Name="spInput" Orientation="Vertical" Background="AliceBlue">
+                        <Button Content="Track Me" Height="76" HorizontalAlignment="Left" Name="btnGet" VerticalAlignment="Top" Width="209" Click="btnGet_Click" Foreground="#FF4C4CD4" BorderBrush="#FF54B736" />
+                        <MediaElement x:Name="med1" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    </StackPanel>
+                    <maps:Map Grid.Row="1" Name="mapBing"  AnimationLevel="None" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                              CopyrightVisibility="Collapsed"  LogoVisibility="Collapsed"
+                              ZoomBarVisibility="Collapsed"
+                              ZoomLevel="12" CredentialsProvider="BING MAPS API KEY" >
+                        <maps:MapLayer Name="RouteLayer" />
+                        <maps:MapLayer Name="StartPoint" />
+                        <maps:MapLayer Name="DestinationPoint" />
+                        <maps:MapLayer Name="CurrentPosition" />
+                        <maps:MapLayer Name="MyPathLayer">
+                        </maps:MapLayer>
+                    </maps:Map>
+
+                </Grid>
+            </Grid>
+        </Controls:PanoramaItem>
+
+        <Controls:PanoramaItem Name="directionsPanorma" >
+            <StackPanel>
+                <Grid Name="drivingDirections" Visibility="Collapsed">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListBox Height="600"  Name="drivingDirectionsList"  SelectionMode="Single" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,5,0,5" Text="{Binding }" FontSize="20" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Grid.Row="1" Content="Clear Map" Name="clearMap" Click="clearMap_Click_1"/>
+                </Grid>
+                <StackPanel Name="LocationDetails">
+                    <TextBox Name="destinationLocation" KeyDown="destinationLocation_KeyDown_1" />
+                    <ListBox Name="availableDestinations" SelectionChanged="availableDestinations_SelectionChanged_1"  >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,5,0,5" Text="{Binding }" FontSize="20" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </Controls:PanoramaItem>
+
+        <Controls:PanoramaItem Header="Settings">
+            <StackPanel>
+
+                <toolkit:ToggleSwitch Header="Prevent Screen Lock" Checked="preventAutoLock_Checked_1" Unchecked="preventAutoLock_Unchecked_1"  VerticalAlignment="Center" Name="preventAutoLock"     />
+
+            </StackPanel>
+
+        </Controls:PanoramaItem>
+
+    </Controls:Panorama>
+
+
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
