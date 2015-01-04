@@ -15,7 +15,7 @@
 
         public static void RegisterByConvention(IUnityContainer container, IEnumerable<Assembly> assembliesToLoad = null)
         {
-            foreach (var type in GetClassesFromAssembliesInBasePath(assembliesToLoad))
+            foreach (var type in GetClassesFromAssemblies(assembliesToLoad))
             {
                 var interfacesToBeRegsitered = GetInterfacesToBeRegistered(type);
                 AddToInternalTypeMapping(type, interfacesToBeRegsitered);
@@ -77,7 +77,7 @@
             return allInterfacesOnType.Except(allInterfacesOnType.SelectMany(i => i.GetInterfaces())).ToList();
         }
 
-        private static IEnumerable<Type> GetClassesFromAssembliesInBasePath(IEnumerable<Assembly> assemblies = null)
+        private static IEnumerable<Type> GetClassesFromAssemblies(IEnumerable<Assembly> assemblies = null)
         {
             var allClasses = assemblies != null ? AllClasses.FromAssemblies(assemblies) : AllClasses.FromAssembliesInBasePath();
             return
