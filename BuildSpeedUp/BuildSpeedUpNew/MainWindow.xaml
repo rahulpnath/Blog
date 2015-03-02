@@ -1,0 +1,19 @@
+﻿<Window x:Class="BuildSpeedUpNew.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="500" Name="solutionPathTextBox" />
+                <Button Content="Load Projects" Click="LoadProjects"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="500" Name="commonPathRelative" />
+                <Button Content="Upadate References" Click="UpdateReferences"/>
+            </StackPanel>
+            <ListBox Height="900" Name="allProjects" SelectionMode="Multiple" />
+        </StackPanel>
+    </Grid>
+</Window>

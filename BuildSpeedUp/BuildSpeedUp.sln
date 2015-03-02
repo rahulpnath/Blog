@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildSpeedUp", "BuildSpeedUp\BuildSpeedUp.csproj", "{8EC3D004-84EA-4982-831E-0B080348104A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildSpeedUpNew", "BuildSpeedUpNew\BuildSpeedUpNew.csproj", "{E56B0D4F-45A2-4B88-80D7-A878A44D9AAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8EC3D004-84EA-4982-831E-0B080348104A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EC3D004-84EA-4982-831E-0B080348104A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EC3D004-84EA-4982-831E-0B080348104A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EC3D004-84EA-4982-831E-0B080348104A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E56B0D4F-45A2-4B88-80D7-A878A44D9AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E56B0D4F-45A2-4B88-80D7-A878A44D9AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E56B0D4F-45A2-4B88-80D7-A878A44D9AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E56B0D4F-45A2-4B88-80D7-A878A44D9AAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
