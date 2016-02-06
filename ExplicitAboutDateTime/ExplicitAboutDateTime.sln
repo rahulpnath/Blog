@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplicitAboutDateTime", "ExplicitAboutDateTime\ExplicitAboutDateTime.csproj", "{4A72C1CC-4CF5-491A-B5F9-70E7E1EBB965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplicitAboutDateTime.Tests", "ExplicitAboutDateTime.Tests\ExplicitAboutDateTime.Tests.csproj", "{3C568D26-7329-4603-ADEA-540B8E14D865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A72C1CC-4CF5-491A-B5F9-70E7E1EBB965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A72C1CC-4CF5-491A-B5F9-70E7E1EBB965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A72C1CC-4CF5-491A-B5F9-70E7E1EBB965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A72C1CC-4CF5-491A-B5F9-70E7E1EBB965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C568D26-7329-4603-ADEA-540B8E14D865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C568D26-7329-4603-ADEA-540B8E14D865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C568D26-7329-4603-ADEA-540B8E14D865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C568D26-7329-4603-ADEA-540B8E14D865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
