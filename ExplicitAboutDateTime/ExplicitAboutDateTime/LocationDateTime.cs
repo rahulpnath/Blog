@@ -8,6 +8,8 @@ namespace ExplicitAboutDateTime
 {
     public class LocationDateTime
     {
+        private DateTimeOffset internalDateTimeOffset;
+
         public static Dictionary<string, TimeZoneInfo> LocationTimezoneMap = new Dictionary<string, TimeZoneInfo>()
         {
             { "TRV", TimeZoneInfo.FindSystemTimeZoneById("India Standard Time") },
@@ -15,15 +17,31 @@ namespace ExplicitAboutDateTime
             { "SEA", TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time") }
         };
 
-        public static bool TryCreateUTC(string dateCandidate, out LocationDateTime date)
+        private LocationDateTime(DateTimeOffset dateTimeOffset)
+        {
+            this.internalDateTimeOffset = dateTimeOffset;
+        }
+
+        public static bool TryCreateDateFromUTC(string dateCandidate, out LocationDateTime date)
         {
             date = null;
-            DateTime internalDate;
-            var isDate = DateTime.TryParse(dateCandidate, out internalDate);
-            if (isDate)
-                date = new LocationDateTime();
+            DateTimeOffset temp;
+            var isDate = DateTimeOffset.TryParse(dateCandidate, out temp);
+            var isOnlyDate = isDate && temp.TimeOfDay.TotalMilliseconds == 0;
 
-            return isDate;
+            if (isOnlyDate)
+                date = new LocationDateTime(temp);
+
+            return isOnlyDate;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var objAsLocationDateTime = obj as LocationDateTime;
+            if (objAsLocationDateTime == null || this == null)
+                return false;
+
+            return this.internalDateTimeOffset.Equals(objAsLocationDateTime.internalDateTimeOffset);
         }
     }
 }
