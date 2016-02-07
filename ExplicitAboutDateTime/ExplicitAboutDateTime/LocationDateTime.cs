@@ -14,5 +14,13 @@ namespace ExplicitAboutDateTime
             { "SYD", TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time") },
             { "SEA", TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time") }
         };
+
+        public static bool TryCreateUTC(string dateCandidate, out LocationDateTime date)
+        {
+            DateTime internalDate;
+            var isDate = DateTime.TryParse(dateCandidate, out internalDate);
+            date = null;
+            return isDate;
+        }
     }
 }
