@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExplicitAboutDateTime
 {
@@ -42,6 +39,13 @@ namespace ExplicitAboutDateTime
                 return false;
 
             return this.internalDateTimeOffset.Equals(objAsLocationDateTime.internalDateTimeOffset);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.internalDateTimeOffset == null
+                ? 0
+                : this.internalDateTimeOffset.GetHashCode();
         }
     }
 }

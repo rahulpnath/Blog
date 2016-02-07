@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace ExplicitAboutDateTime.Tests
 {
@@ -57,6 +52,26 @@ namespace ExplicitAboutDateTime.Tests
             LocationDateTime.TryCreateDateFromUTC(anotherLocationDate, out anotherLocationDateTime);
 
             Assert.Equal(expected, aLocationDateTime.Equals(anotherLocationDateTime));
+        }
+
+        [Theory]
+        [InlineData("10 Apr 2010", "11 Apr 2010", false)]
+        [InlineData("10 Apr 2010", "10 Apr 2010", true)]
+        [InlineData("10 Apr 2010", "10 04 2010", true)]
+        [InlineData("10 Apr 2010", "10 Apr 2010 00:00:00", true)]
+        [InlineData("10 Apr 2010", "10/04/2010 00:00:00", true)]
+        public void SutOverridesGetHashCodeAsExpected(
+            string aLocationDate,
+            string anotherLocationDate,
+            bool expected)
+        {
+            LocationDateTime aLocationDateTime;
+            LocationDateTime.TryCreateDateFromUTC(aLocationDate, out aLocationDateTime);
+
+            LocationDateTime anotherLocationDateTime;
+            LocationDateTime.TryCreateDateFromUTC(anotherLocationDate, out anotherLocationDateTime);
+
+            Assert.Equal(expected, aLocationDateTime.GetHashCode().Equals(anotherLocationDateTime.GetHashCode()));
         }
     }
 }
