@@ -17,9 +17,12 @@ namespace ExplicitAboutDateTime
 
         public static bool TryCreateUTC(string dateCandidate, out LocationDateTime date)
         {
+            date = null;
             DateTime internalDate;
             var isDate = DateTime.TryParse(dateCandidate, out internalDate);
-            date = null;
+            if (isDate)
+                date = new LocationDateTime();
+
             return isDate;
         }
     }
