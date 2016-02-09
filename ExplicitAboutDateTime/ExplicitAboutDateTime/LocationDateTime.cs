@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ExplicitAboutDateTime
 {
@@ -23,13 +24,13 @@ namespace ExplicitAboutDateTime
         {
             date = null;
             DateTimeOffset temp;
-            var isDate = DateTimeOffset.TryParse(dateCandidate, out temp);
-            var isOnlyDate = isDate && temp.TimeOfDay.TotalMilliseconds == 0;
+            var isDate = DateTimeOffset.TryParse(dateCandidate, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out temp);
+            var isOnlyUTCDate = isDate && temp.TimeOfDay.TotalMilliseconds == 0 && temp.Offset.TotalMilliseconds == 0;
 
-            if (isOnlyDate)
+            if (isOnlyUTCDate)
                 date = new LocationDateTime(temp);
 
-            return isOnlyDate;
+            return isOnlyUTCDate;
         }
 
         public override bool Equals(object obj)

@@ -25,6 +25,8 @@ namespace ExplicitAboutDateTime.Tests
         [InlineData("10 04 2010", true)]
         [InlineData("10 04 2010 00:00:00", true)]
         [InlineData("10 04 2010 00:00:01", false)]
+        [InlineData("10 04 2010 00:00:00 +00:00", true)]
+        [InlineData("10 04 2010 00:00:00 +01:00", false)]
         public void TryCreateDateInUTCSetsOutDateAsExpected(string invalidDate, bool expected)
         {
             LocationDateTime locationDateTime;
@@ -36,9 +38,9 @@ namespace ExplicitAboutDateTime.Tests
         [InlineData("10 Apr 2010", null, false)]
         [InlineData("10 Apr 2010", "11 Apr 2010", false)]
         [InlineData("10 Apr 2010", "10 Apr 2010", true)]
-        [InlineData("10 Apr 2010", "10 04 2010", true)]
+        [InlineData("10 Apr 2010", "04 10 2010", true)]
         [InlineData("10 Apr 2010", "10 Apr 2010 00:00:00", true)]
-        [InlineData("10 Apr 2010", "10/04/2010 00:00:00", true)]
+        [InlineData("10 Apr 2010", "04/10/2010 00:00:00", true)]
         [InlineData("10 Apr 2010", "10 Apr 2010 00:00:01", false)]
         public void SutOverridesEqualsAsExpected(
             string aLocationDate,
@@ -57,9 +59,9 @@ namespace ExplicitAboutDateTime.Tests
         [Theory]
         [InlineData("10 Apr 2010", "11 Apr 2010", false)]
         [InlineData("10 Apr 2010", "10 Apr 2010", true)]
-        [InlineData("10 Apr 2010", "10 04 2010", true)]
+        [InlineData("10 Apr 2010", "04 10 2010", true)]
         [InlineData("10 Apr 2010", "10 Apr 2010 00:00:00", true)]
-        [InlineData("10 Apr 2010", "10/04/2010 00:00:00", true)]
+        [InlineData("10 Apr 2010", "04/10/2010 00:00:00", true)]
         public void SutOverridesGetHashCodeAsExpected(
             string aLocationDate,
             string anotherLocationDate,
