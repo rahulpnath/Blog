@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace ExplicitAboutDateTime.Tests
 {
@@ -74,6 +75,18 @@ namespace ExplicitAboutDateTime.Tests
             LocationDateTime.TryCreateDateFromUTC(anotherLocationDate, out anotherLocationDateTime);
 
             Assert.Equal(expected, aLocationDateTime.GetHashCode().Equals(anotherLocationDateTime.GetHashCode()));
+        }
+
+        [Theory]
+        [InlineData("10 Apr 2015")]
+        [InlineData("04 10 2015")]
+        [InlineData("10 Apr 2015 00:00:00")]
+        public void GetUTCDateTimeHasKindUTC(string aLocationDate)
+        {
+            LocationDateTime sut;
+            Assert.True(LocationDateTime.TryCreateDateFromUTC(aLocationDate, out sut));
+            var actual = sut.GetUTCDateTime();
+            Assert.Equal(DateTimeKind.Utc, actual.Kind);
         }
     }
 }

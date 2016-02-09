@@ -20,6 +20,11 @@ namespace ExplicitAboutDateTime
             this.internalDateTimeOffset = dateTimeOffset;
         }
 
+        public DateTime GetUTCDateTime()
+        {
+            return this.internalDateTimeOffset.UtcDateTime;
+        }
+
         public static bool TryCreateDateFromUTC(string dateCandidate, out LocationDateTime date)
         {
             date = null;
