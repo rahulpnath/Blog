@@ -88,5 +88,14 @@ namespace ExplicitAboutDateTime.Tests
             var actual = sut.GetUTCDateTime();
             Assert.Equal(DateTimeKind.Utc, actual.Kind);
         }
+
+        [Theory]
+        [InlineData("10 Apr 2015", "TRV","10 Apr 2015")]
+        [InlineData("10 Apr 2015", "SYD", "10 Apr 2015")]
+        [InlineData("10 Apr 2015", "SEA", "09 Apr 2015")]
+        public void GetDateTimeAtLocationReturnsExpected(string aLocationDate, string locationCode, string expected)
+        {
+
+        }
     }
 }

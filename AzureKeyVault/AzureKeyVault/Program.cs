@@ -1,8 +1,6 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using Microsoft.KeyVault.Client;
+﻿using Microsoft.Azure.KeyVault;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +23,11 @@ namespace AzureKeyVault
 
         static async Task MainAsync(string[] args)
         {
-            var keyClient = new KeyVaultClient((authority, resource, scope) =>
+            var keyClient = new KeyVaultClient(async (authority, resource, scope) =>
             {
                 var adCredential = new ClientCredential(applicationId, applicationSecret);
                 var authenticationContext = new AuthenticationContext(authority, null);
-                return authenticationContext.AcquireToken(resource, adCredential).AccessToken;
+                return (await authenticationContext.AcquireTokenAsync(resource, adCredential)).AccessToken;
             });
 
             // Get the key details
@@ -45,7 +43,7 @@ namespace AzureKeyVault
                 
                 // Encrypt and Decrypt
                 var encryptedText = rsa.Encrypt(byteData, true);
-                var decryptedData = await keyClient.DecryptDataAsync(keyIdentifier, "RSA_OAEP", encryptedText);
+                var decryptedData = await keyClient.DecryptAsync(keyIdentifier, "RSA_OAEP", encryptedText);
                 var decryptedText = Encoding.Unicode.GetString(decryptedData.Result);
 
                 // Sign and Verify
