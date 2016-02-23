@@ -31,7 +31,7 @@ namespace AzureKeyVault
             });
 
             // Get the key details
-            var keyIdentifier = "https://testvaultrahul.vault.azure.net/keys/rahulkey/0f653b06c1d94159bc7090596bbf7784";
+            var keyIdentifier = "https://rahulkeyvault.vault.azure.net:443/keys/NewKey";
             var key = await keyClient.GetKeyAsync(keyIdentifier);
             var publicKey = Convert.ToBase64String(key.Key.N);
 
@@ -43,7 +43,7 @@ namespace AzureKeyVault
                 
                 // Encrypt and Decrypt
                 var encryptedText = rsa.Encrypt(byteData, true);
-                var decryptedData = await keyClient.DecryptAsync(keyIdentifier, "RSA_OAEP", encryptedText);
+                var decryptedData = await keyClient.DecryptAsync(keyIdentifier, "RSA-OAEP", encryptedText);
                 var decryptedText = Encoding.Unicode.GetString(decryptedData.Result);
 
                 // Sign and Verify
