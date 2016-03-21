@@ -1,57 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 
 namespace ExplicitAboutDateTime
 {
     public class LocationDateTime
     {
-        private DateTimeOffset internalDateTimeOffset;
+        private DateTime internalDateTimeUTC;
 
-        public static Dictionary<string, TimeZoneInfo> LocationTimezoneMap = new Dictionary<string, TimeZoneInfo>()
+        public LocationDateTime(DateTime dateTimeUTC)
         {
-            { "TRV", TimeZoneInfo.FindSystemTimeZoneById("India Standard Time") },
-            { "SYD", TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time") },
-            { "SEA", TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time") }
-        };
+            if (dateTimeUTC == null)
+                throw new ArgumentNullException(nameof(dateTimeUTC));
 
-        private LocationDateTime(DateTimeOffset dateTimeOffset)
-        {
-            this.internalDateTimeOffset = dateTimeOffset;
+            if (dateTimeUTC.Kind != DateTimeKind.Utc)
+                throw new ArgumentException("Date Time not in UTC");
+
+            internalDateTimeUTC = dateTimeUTC;
         }
 
-        public DateTime GetUTCDateTime()
+        public static LocationDateTime AtLocation(DateTime locationDateTime, Location location)
         {
-            return this.internalDateTimeOffset.UtcDateTime;
-        }
-
-        public static bool TryCreateDateFromUTC(string dateCandidate, out LocationDateTime date)
-        {
-            date = null;
-            DateTimeOffset temp;
-            var isDate = DateTimeOffset.TryParse(dateCandidate, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out temp);
-            var isOnlyUTCDate = isDate && temp.TimeOfDay.TotalMilliseconds == 0 && temp.Offset.TotalMilliseconds == 0;
-
-            if (isOnlyUTCDate)
-                date = new LocationDateTime(temp);
-
-            return isOnlyUTCDate;
+            locationDateTime = DateTime.SpecifyKind(locationDateTime, DateTimeKind.Unspecified);
+            var utcTime = TimeZoneInfo.ConvertTimeToUtc(locationDateTime, location.TimeZoneInfo);
+            return new LocationDateTime(utcTime);
         }
 
         public override bool Equals(object obj)
         {
             var objAsLocationDateTime = obj as LocationDateTime;
-            if (objAsLocationDateTime == null || this == null)
+            if ((System.Object)objAsLocationDateTime == null)
                 return false;
 
-            return this.internalDateTimeOffset.Equals(objAsLocationDateTime.internalDateTimeOffset);
+            return objAsLocationDateTime.internalDateTimeUTC == internalDateTimeUTC;
         }
 
         public override int GetHashCode()
         {
-            return this.internalDateTimeOffset == null
-                ? 0
-                : this.internalDateTimeOffset.GetHashCode();
+            return internalDateTimeUTC.GetHashCode();
         }
     }
 }
