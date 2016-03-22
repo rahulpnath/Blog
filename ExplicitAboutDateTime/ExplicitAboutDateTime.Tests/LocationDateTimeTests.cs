@@ -5,5 +5,6 @@ namespace ExplicitAboutDateTime.Tests
 {
     public class LocationDateTimeTests
     {
+
     }
 }
