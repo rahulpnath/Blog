@@ -4,24 +4,29 @@ namespace ExplicitAboutDateTime
 {
     public class LocationDateTime
     {
-        private DateTime internalDateTimeUTC;
+        public Location Location { get; private set; }
+        public DateTime DateTimeInUTC { get; private set; }
 
-        public LocationDateTime(DateTime dateTimeUTC)
+        public LocationDateTime(Location location, DateTime dateTimeUTC)
         {
+            if (location == null)
+                throw new ArgumentNullException(nameof(location));
+
             if (dateTimeUTC == null)
                 throw new ArgumentNullException(nameof(dateTimeUTC));
 
             if (dateTimeUTC.Kind != DateTimeKind.Utc)
                 throw new ArgumentException("Date Time not in UTC");
 
-            internalDateTimeUTC = dateTimeUTC;
+            Location = location;
+            DateTimeInUTC = dateTimeUTC;
         }
 
         public static LocationDateTime AtLocation(DateTime locationDateTime, Location location)
         {
             locationDateTime = DateTime.SpecifyKind(locationDateTime, DateTimeKind.Unspecified);
             var utcTime = TimeZoneInfo.ConvertTimeToUtc(locationDateTime, location.TimeZoneInfo);
-            return new LocationDateTime(utcTime);
+            return new LocationDateTime(location, utcTime);
         }
 
         public override bool Equals(object obj)
@@ -30,12 +35,12 @@ namespace ExplicitAboutDateTime
             if ((System.Object)objAsLocationDateTime == null)
                 return false;
 
-            return objAsLocationDateTime.internalDateTimeUTC == internalDateTimeUTC;
+            return objAsLocationDateTime.DateTimeInUTC == DateTimeInUTC;
         }
 
         public override int GetHashCode()
         {
-            return internalDateTimeUTC.GetHashCode();
+            return DateTimeInUTC.GetHashCode();
         }
     }
 }

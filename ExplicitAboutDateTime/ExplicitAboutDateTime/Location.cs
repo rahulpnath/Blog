@@ -10,7 +10,7 @@ namespace ExplicitAboutDateTime
 
         public Location(string locationCode, string locationName, TimeZoneInfo timeZoneInfo)
         {
-            if (string.IsNullOrEmpty(LocationCode))
+            if (string.IsNullOrEmpty(locationCode))
                 throw new ArgumentNullException(nameof(LocationCode));
 
             if (string.IsNullOrEmpty(locationName))
