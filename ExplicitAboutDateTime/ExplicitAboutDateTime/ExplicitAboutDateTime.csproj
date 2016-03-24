@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationDateTime.cs" />
     <Compile Include="Program.cs" />

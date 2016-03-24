@@ -6,6 +6,7 @@ namespace ExplicitAboutDateTime
     {
         public Location Location { get; private set; }
         public DateTime DateTimeInUTC { get; private set; }
+        public DateTimeOffset DateTimeInLocation { get; private set; }
 
         public LocationDateTime(Location location, DateTime dateTimeUTC)
         {
@@ -20,13 +21,21 @@ namespace ExplicitAboutDateTime
 
             Location = location;
             DateTimeInUTC = dateTimeUTC;
+            DateTimeInLocation = TimeAtLocation(Location);
         }
 
         public static LocationDateTime AtLocation(DateTime locationDateTime, Location location)
         {
-            locationDateTime = DateTime.SpecifyKind(locationDateTime, DateTimeKind.Unspecified);
+            if (locationDateTime.Kind != DateTimeKind.Unspecified)
+                throw new ArgumentException("DateTimeKind should be unspecified");
+
             var utcTime = TimeZoneInfo.ConvertTimeToUtc(locationDateTime, location.TimeZoneInfo);
             return new LocationDateTime(location, utcTime);
+        }
+
+        public DateTimeOffset TimeAtLocation(Location location)
+        {
+            return TimeZoneInfo.ConvertTime((DateTimeOffset)DateTimeInUTC, location.TimeZoneInfo);
         }
 
         public override bool Equals(object obj)
