@@ -1,0 +1,44 @@
+    {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "keyVaultName": {
+                "value": "NewARMVaultP"
+            },
+            "tenantId": {
+                "value": ""
+            },
+            "accessPolicies": {
+                "value": [
+                    {
+                        "tenantId": "<TENANT ID>",
+                        "objectId": "<AD OBJECT ID>",
+                        "permissions": {
+                            "keys": ["all"],
+                            "secrets": ["all"]
+                        }
+                    },
+                    {
+                        "tenantId": "<TENANT ID>",
+                        "objectId": "<AD OBJECT ID>",
+                        "permissions": {
+                            "keys": ["all"],
+                            "secrets": ["all"]
+                        }
+                    }
+                ]
+            },
+            "secrets": {
+                "value": [
+                    {
+                        "secretName": "ConnectionString",
+                        "secretValue": "SecureString1"
+                    },
+                    {
+                        "secretName": "SecretCode",
+                        "secretValue": "SecureString2"
+                    }
+                ]
+            }
+        }
+    }
