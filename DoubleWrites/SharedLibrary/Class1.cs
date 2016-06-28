@@ -11,7 +11,7 @@ namespace SharedLibrary
     {
         public Class1()
         {
-            JsonConvert.DefaultSettings.EndInvoke(null);
+            JsonConvert.SerializeObject("string");
         }
     }
 }
