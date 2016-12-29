@@ -12,6 +12,7 @@ $adApplication = New-AzureRmADApplication `
 -DisplayName "<Display Name>" `
 -HomePage  "<URL>" `
 -IdentifierUris "<URL>" `
+# if you are on Azure 2.0 powershell use -CertValue (https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal#create-service-principal-with-certificate)
 -KeyValue  $credential `
 -KeyType "AsymmetricX509Cert" `
 -KeyUsage "Verify" `
