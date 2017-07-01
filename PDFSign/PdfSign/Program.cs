@@ -32,7 +32,7 @@ namespace PdfSign
             var certificate = GetCertificateLocal();
             var privateKey = DotNetUtilities.GetKeyPair(certificate.PrivateKey).Private;
             var externalSignature = new PrivateKeySignature(privateKey, "SHA-256");
-            SignPdf(certificate, externalSignature, "Local Key");
+            SignPdf(certificate, externalSignature, "Local Key.pdf");
         }
 
         private static async Task SignPdfWithExportableCertificateInKeyVault()
