@@ -1,0 +1,142 @@
+﻿@using System.IO
+@using System.Reflection
+@using RazorLight.Text
+@using System.Globalization
+@using RazorLight
+@using PdfNetCore.PdfTemplates;
+@using PdfNetCore.Models;
+@inherits TemplatePage<QuoteDto>
+
+@functions {
+    IRawString RenderHeaderLine(string header, string content, string className = "")
+    {
+        return Raw($@"
+<div class=""quote-pdf__item {className}"">
+<strong>{header}</strong>
+{content}
+</div>
+");
+    }
+
+    string FormatDateTime(DateTime date)
+    {
+        return date.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+    }
+
+    IRawString RenderLineItem(int index, QuoteItemDto item)
+    {
+        return Raw($@"
+<tr>
+<td>{index}</td>
+<td>{item.Description}</td>
+<td>{item.UnitPrice}</td>
+<td>{item.Quantity}</td>
+<td>{item.TotalPrice}</td>
+</tr>");
+    }
+
+}
+<!doctype html>
+<html>
+<head>
+    @{
+        string styles = "";
+        var dir = Directory.GetCurrentDirectory();
+        styles = File.ReadAllText(@$"{dir}\PdfTemplates\Quote\QuoteStyles.css");
+        //using (var stream = PdfTemplatesPlaceholder.Assembly.GetManifestResourceStream(typeof(PdfTemplatesPlaceholder).GetTypeInfo().Namespace + ".Quote.QuoteStyles.css"))
+        //{
+        //    if (stream == null)
+        //        throw new Exception("Cannot load the style file");
+
+        //    using (StreamReader reader = new StreamReader(stream))
+        //    {
+        //        styles = reader.ReadToEnd();
+        //    }
+        //}
+        @Raw(string.Format("<style>{0}</style>", styles))
+    }
+
+</head>
+<body>
+    <div class="quote-pdf">
+        <table>
+            <tr>
+                <td colspan="3">
+                    <div class="quote-pdf__title">QUOTATION</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <div class="quote-pdf__company">
+                        <strong>Company Private Ltd.</strong>
+                        @RenderHeaderLine("Address", "123 ABCD Road")
+                        @RenderHeaderLine("Phone", "1800 456 789")
+                        @RenderHeaderLine("Website:", "https://www.company.com")
+                    </div>
+                </td>
+                <td>
+                    <div class="quote-pdf__quotation">
+
+                        @RenderHeaderLine("Number", Model.Number)
+                        @RenderHeaderLine("Date created", FormatDateTime(Model.CreatedDate))
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div class="quote-pdf__customer">
+                        <div><strong>@Model.Customer.CustomerName</strong></div>
+                        <div>@Model.Customer.Address</div>
+                        @RenderHeaderLine("Mobile", Model.Customer.Mobile, "quote-pdf__phone")
+                        @RenderHeaderLine("Email", Model.Customer.Email)
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="quote-pdf__table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Description</th>
+                        <th>Price (Inc GST)</th>
+                        <th>Quantity</th>
+                        <th>Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        var index = 0;
+                        foreach (var item in Model.Items)
+                        {
+                            index++;
+                            @RenderLineItem(index, item);
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quote-pdf__summary">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <div>Sub Total -  @Model.SubTotal</div>
+                                <div>Discount - @Model.Discount </div>
+                                <div>Total Price -  @Model.TotalPrice</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

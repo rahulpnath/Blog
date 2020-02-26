@@ -1,0 +1,75 @@
+﻿/* Compiled with https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    font-family: 'Open Sans';
+}
+
+.quote-pdf {
+    width: 800px;
+    display: block;
+
+    td {
+        vertical-align: top;
+    }
+
+    &__item {
+        padding: 5px;
+    }
+
+    &__icon {
+        width: 240px;
+        vertical-align: top;
+    }
+
+    &__customer {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    &__company {
+        width: 300px;
+        float: right;
+    }
+
+    &__phone {
+        display: inline-block;
+    }
+
+    &__table {
+        margin-bottom: 20px;
+
+        table {
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px black solid;
+            padding: 5px;
+        }
+    }
+
+    &__notes {
+        th {
+            text-align: left;
+        }
+    }
+
+    &__summary {
+        td {
+            max-width: 500px;
+        }
+    }
+
+    
+}
