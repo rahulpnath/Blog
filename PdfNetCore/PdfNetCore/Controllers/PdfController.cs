@@ -30,20 +30,23 @@ namespace PdfNetCore.Controllers
             if (html.GetValueOrDefault())
             {
                 var htmlResult = await HtmlGenerationService.Generate(model);
-                return new ContentResult() { Content = htmlResult, ContentType = "text/html", StatusCode = 200 };
+                return new ContentResult() { 
+                    Content = htmlResult, 
+                    ContentType = "text/html", 
+                    StatusCode = 200 };
             }
 
             var result = await PdfGenerationService.Generate(model);
             return File(result, "application/pdf", $"Quote - {model.Number}.pdf");
         }
 
-        private static QuoteDto GetDtoFromStorage(string id)
+        private static Quote GetDtoFromStorage(string id)
         {
-            return new QuoteDto()
+            return new Quote()
             {
                 Number = id,
                 CreatedDate = DateTime.Now,
-                 Customer = new CustomerDto()
+                 Customer = new Customer()
                  {
                      CustomerName = "Rahul Nath",
                      Address = "100 Unknown Street, Suburb, 1010",
@@ -54,23 +57,23 @@ namespace PdfNetCore.Controllers
                  SubTotal = 1555,
                  TotalPrice = 1535,
                  Notes = "My Notes",
-                 Items = new System.Collections.Generic.List<QuoteItemDto>()
+                 Items = new System.Collections.Generic.List<QuoteItem>()
                  {
-                     new QuoteItemDto()
+                     new QuoteItem()
                      {
                          Description = "IPhone 11",
                          Quantity = 1,
                          TotalPrice = 1500,
                          UnitPrice = 1500
                      },
-                     new QuoteItemDto()
+                     new QuoteItem()
                      {
                          Description = "IPhone 11 Screen Protector",
                          Quantity = 1,
                          TotalPrice = 35,
                          UnitPrice = 35
                      },
-                     new QuoteItemDto()
+                     new QuoteItem()
                      {
                          Description = "Discount",
                          Quantity = 1,

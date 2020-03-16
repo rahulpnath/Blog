@@ -6,14 +6,15 @@ namespace PdfNetCore.Infrastructure
 {
     public class PdfGeneratorService : IPdfGeneratorService
     {
+        public HtmlToPdfConverter HtmlToPdf { get; }
         public IHtmlGenerationService HtmlGenerationService { get; }
-        public NRecoConfig Config { get; }
 
         public PdfGeneratorService(
-            IHtmlGenerationService htmlGenerationService, NRecoConfig config)
+            HtmlToPdfConverter htmlToPdf,
+            IHtmlGenerationService htmlGenerationService)
         {
+            HtmlToPdf = htmlToPdf;
             HtmlGenerationService = htmlGenerationService;
-            Config = config;
         }
 
         public async Task<byte[]> Generate<T>(T data)
@@ -25,13 +26,7 @@ namespace PdfNetCore.Infrastructure
 
         private byte[] ToPdf(string htmlContent)
         {
-            var htmlToPdf = new HtmlToPdfConverter();
-            htmlToPdf.License.SetLicenseKey(
-                Config.UserName,
-                Config.License
-            );
-
-            return htmlToPdf.GeneratePdf(htmlContent);
+            return HtmlToPdf.GeneratePdf(htmlContent);
         }
     }
 }

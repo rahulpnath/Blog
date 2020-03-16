@@ -14,7 +14,7 @@ namespace PdfNetCore.Infrastructure
         }
         public async Task<string> Generate<T>(T data)
         {
-            var template = typeof(T).Name.Replace("Dto", "", System.StringComparison.InvariantCultureIgnoreCase);
+            var template = typeof(T).Name;
             return await _razorLightEngine.CompileRenderAsync($"{template}/{template}.cshtml", data);
         }
     }

@@ -5,7 +5,7 @@
 @using RazorLight
 @using PdfNetCore.PdfTemplates;
 @using PdfNetCore.Models;
-@inherits TemplatePage<QuoteDto>
+@inherits TemplatePage<Quote>
 
 @functions {
     IRawString RenderHeaderLine(string header, string content, string className = "")
@@ -23,7 +23,7 @@
         return date.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
     }
 
-    IRawString RenderLineItem(int index, QuoteItemDto item)
+    IRawString RenderLineItem(int index, QuoteItem item)
     {
         return Raw($@"
 <tr>

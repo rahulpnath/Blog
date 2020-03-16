@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace PdfNetCore.Models
 {
-    public class QuoteDto
+    public class Quote
     {
         public string Number { get; set; }
         public DateTime CreatedDate { get; set; }
-        public CustomerDto Customer { get; set; } = new CustomerDto();
-        public List<QuoteItemDto> Items { get; set; } = new List<QuoteItemDto>();
+        public Customer Customer { get; set; } = new Customer();
+        public List<QuoteItem> Items { get; set; } = new List<QuoteItem>();
         public string Notes { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Discount { get; set; }
         public decimal TotalPrice { get; set; }
     }
 
-    public class QuoteItemDto
+    public class QuoteItem
     {
         public string Description { get; set; }
         public int Quantity { get; set; }
@@ -23,7 +23,7 @@ namespace PdfNetCore.Models
         public decimal TotalPrice { get; set; }
     }
 
-    public class CustomerDto
+    public class Customer
     {
         public string CustomerName { get; set; }
         public string Address { get; set; }

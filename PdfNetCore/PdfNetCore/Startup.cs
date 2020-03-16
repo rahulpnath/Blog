@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NReco.PdfGenerator;
 using PdfNetCore.Infrastructure;
 using PdfNetCore.PdfTemplates;
 using PdfNetCore.Services;
@@ -35,6 +36,15 @@ namespace PdfNetCore
 
             var nrecoConfig = Configuration.GetSection(nameof(NRecoConfig)).Get<NRecoConfig>();
             services.AddSingleton(nrecoConfig);
+
+            var htmlToPdf = new HtmlToPdfConverter();
+            htmlToPdf.License.SetLicenseKey(
+                nrecoConfig.UserName,
+                nrecoConfig.License
+            );
+            htmlToPdf.BeginBatch();
+            services.AddSingleton(htmlToPdf);
+
             services.AddTransient<IPdfGeneratorService, PdfGeneratorService>();
             services.AddTransient<IHtmlGenerationService, HtmlGenerationService>();
         }
