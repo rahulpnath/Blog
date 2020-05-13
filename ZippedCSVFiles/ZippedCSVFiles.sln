@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZippedCSVFiles", "ZippedCSVFiles.csproj", "{B0D18D32-F3E0-4DF9-B750-079419AC7B73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0D18D32-F3E0-4DF9-B750-079419AC7B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D18D32-F3E0-4DF9-B750-079419AC7B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D18D32-F3E0-4DF9-B750-079419AC7B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D18D32-F3E0-4DF9-B750-079419AC7B73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A19A9C53-7887-4A1E-920A-032CCE0A6AF5}
+	EndGlobalSection
+EndGlobal
