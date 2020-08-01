@@ -34,6 +34,19 @@ namespace SpecFlow.AutoFixture.Tests.Steps
                     customer);
             }
         }
+        [Given(@"I have a valid customer")]
+        public void GivenIHaveAValidCustomer()
+        {
+            customer.ShouldNotBeNull();
+        }
+
+        [When(@"I set First name as '(.*)' and Last name as '(.*)'")]
+        public void WhenISetFirstNameAsAndLastNameAs(string firstName, string lastName)
+        {
+            customer.FirstName = firstName;
+            customer.LastName = lastName;
+        }
+
 
         [When(@"I GET the customer using  the API")]
         public async Task WhenIGETTheCustomerUsingTheAPI()
@@ -50,6 +63,12 @@ namespace SpecFlow.AutoFixture.Tests.Steps
         {
             var actual = context.GetActual<Customer>();
             actual.ShouldBeEquivalentTo(customer);
+        }
+
+        [Then(@"the FullName must be '(.*)'")]
+        public void ThenTheFullNameMustBe(string expected)
+        {
+            customer.FullName.ShouldBe(expected);
         }
 
     }
