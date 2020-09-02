@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosRest.Api", "CosmosRest.Api\CosmosRest.Api.csproj", "{D498E1A5-08D9-4EC4-B287-71F392EBE375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosRest.Domain", "CosmosRest.Domain\CosmosRest.Domain.csproj", "{C7518779-09C6-4B65-821F-BB1A6498656E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosRest.Infrastructure", "CosmosRest.Infrastructure\CosmosRest.Infrastructure.csproj", "{0D0F769D-F092-4709-B3BA-B97A4BD41790}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D498E1A5-08D9-4EC4-B287-71F392EBE375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D498E1A5-08D9-4EC4-B287-71F392EBE375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D498E1A5-08D9-4EC4-B287-71F392EBE375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D498E1A5-08D9-4EC4-B287-71F392EBE375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7518779-09C6-4B65-821F-BB1A6498656E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7518779-09C6-4B65-821F-BB1A6498656E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7518779-09C6-4B65-821F-BB1A6498656E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7518779-09C6-4B65-821F-BB1A6498656E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0F769D-F092-4709-B3BA-B97A4BD41790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0F769D-F092-4709-B3BA-B97A4BD41790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0F769D-F092-4709-B3BA-B97A4BD41790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0F769D-F092-4709-B3BA-B97A4BD41790}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
