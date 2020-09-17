@@ -7,17 +7,17 @@ namespace CosmosRest.Infrastructure
 
     namespace LOR.Forms.Infrastructure.Cosmos
     {
-        public interface ICosmosDbClientFactory
+        public interface ICosmosClientFactory
         {
             CosmosContainer GetClient(string collectionName);
         }
 
-        public class CosmosDbClientFactory : ICosmosDbClientFactory
+        public class CosmosClientFactory : ICosmosClientFactory
         {
             private readonly CosmosClient _client;
             private readonly string _databaseName;
 
-            public CosmosDbClientFactory(CosmosConfiguration configuration)
+            public CosmosClientFactory(CosmosConfiguration configuration)
             {
                 _client = new CosmosClient(
                     configuration.EndpointUrl,

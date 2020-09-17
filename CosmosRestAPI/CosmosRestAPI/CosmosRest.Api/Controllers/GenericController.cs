@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CosmosRest.Domain;
+using CosmosRest.Domain.Aggregates;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CosmosRest.Api.Controllers
 {
     [ApiController]
     [Route("{resourceType}/{resourceId}/{modelType}")]
-    public class GenericController<T> : ControllerBase
+    public class GenericController<T> : ControllerBase 
     {
-        public IGenericRepository<T> Repository { get; }
+        public IRepository<T> Repository { get; }
 
-        public GenericController(IGenericRepository<T> repository)
+        public GenericController(IRepository<T> repository)
         {
             Repository = repository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<T>>> GetAll(string resourceType, Guid resourceId)
+        public async Task<ActionResult<IEnumerable<T>>> GetAll(string resourceType, string resourceId)
         {
             var modelType = GetModelType();
             var forms = await Repository.GetAll(resourceType, resourceId, modelType);
@@ -26,7 +27,7 @@ namespace CosmosRest.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<T>> Get(Guid id, Guid resourceId, string? modelType)
+        public async Task<ActionResult<T>> Get(string id, string resourceId, string? modelType)
         {
             modelType ??= GetModelType();
             var form = await Repository.Get(id, resourceId, modelType);
@@ -34,7 +35,7 @@ namespace CosmosRest.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Guid resourceId, T data, string? modelType)
+        public async Task<ActionResult> Create(string resourceId, T data, string? modelType)
         {
             modelType ??= GetModelType();
             await Repository.Add(data, resourceId, modelType);
@@ -42,7 +43,7 @@ namespace CosmosRest.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id, Guid resourceId, T data, string modelType)
+        public async Task<ActionResult> Update(string id, string resourceId, T data, string modelType)
         {
             modelType ??= GetModelType();
 
@@ -51,7 +52,7 @@ namespace CosmosRest.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id, Guid resourceId, string modelType)
+        public async Task<ActionResult> Delete(string id, string resourceId, string modelType)
         {
             modelType ??= GetModelType();
             await Repository.Delete(id, resourceId, modelType);
