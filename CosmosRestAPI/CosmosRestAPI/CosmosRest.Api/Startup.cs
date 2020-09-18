@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CosmosRest.Domain;
 using CosmosRest.Infrastructure;
 using CosmosRest.Infrastructure.LOR.Forms.Infrastructure.Cosmos;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,7 @@ namespace CosmosRest.Api
             var cosmosConfig = Configuration.GetSection("Cosmos").Get<CosmosConfiguration>();
             services.AddSingleton(cosmosConfig);
             services.AddSingleton<ICosmosClientFactory, CosmosClientFactory>();
+            services.AddScoped(typeof(IRepository<>), typeof(CosmosRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

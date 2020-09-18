@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CosmosRest.Api.Controllers
 {
     [ApiController]
-    [Route("{resourceType}/{resourceId}/{modelType}")]
+    [Route("api/{resourceType}/{resourceId}/{modelType}")]
     public class GenericController<T> : ControllerBase 
     {
         public IRepository<T> Repository { get; }

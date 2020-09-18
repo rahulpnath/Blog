@@ -20,7 +20,7 @@ namespace CosmosRest.Infrastructure
         public async Task<IEnumerable<T>> GetAll(string resourceType, string resourceId, string modelType)
         {
             var client = _cosmosClientFactory.GetClient(modelType);
-            var query = new QueryDefinition($"SELECT FROM c WHERE c.{resourceType}Id=@resourceId")
+            var query = new QueryDefinition($"SELECT * FROM c WHERE c.{resourceType}Id=@resourceId")
                 .WithParameter("@resourceId", resourceId);
             var results = client.GetItemQueryIterator<T>(query);
            
