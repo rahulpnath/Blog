@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountName": {
+      "value": "#arm_accountName#"
+    },
+    "databaseName": {
+      "value": "#arm_databaseName#"
+    },
+    "containers": {
+      "value": [
+        {
+          "name": "mycontainer1",
+          "partitionKey": "/paritionKey1"
+        },
+        {
+          "name": "mycontainer2",
+          "partitionKey": "/paritionKey2"
+        },
+        {
+          "name": "mycontainer3",
+          "partitionKey": "/paritionKey3"
+        },
+        {
+          "name": "mycontainer4",
+          "partitionKey": "/paritionKey3"
+        }
+      ]
+    }
+  }
+}

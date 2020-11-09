@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosEmulator.Api", "CosmosEmulator.Api\CosmosEmulator.Api.csproj", "{09C7BBD7-FED0-4172-BAF2-982D13EE1AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosEmulator.ArmTemplate", "CosmosEmulator.ArmTemplate\CosmosEmulator.ArmTemplate.csproj", "{75BB0F36-4EC0-46D6-B700-F44AA36FF714}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09C7BBD7-FED0-4172-BAF2-982D13EE1AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C7BBD7-FED0-4172-BAF2-982D13EE1AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C7BBD7-FED0-4172-BAF2-982D13EE1AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C7BBD7-FED0-4172-BAF2-982D13EE1AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75BB0F36-4EC0-46D6-B700-F44AA36FF714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BB0F36-4EC0-46D6-B700-F44AA36FF714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BB0F36-4EC0-46D6-B700-F44AA36FF714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BB0F36-4EC0-46D6-B700-F44AA36FF714}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

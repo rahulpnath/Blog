@@ -2,40 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CosmosRest.Domain;
-using CosmosRest.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-namespace CosmosRest.Api
+namespace CosmosEmulator.Api
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddControllers(o => o.Conventions.Add(new ControllerRouteConvention()))
-                .ConfigureApplicationPartManager(m =>
-                    m.FeatureProviders.Add(new ControllerFeatureProvider()));
-
-
-            var cosmosConfig = Configuration.GetSection("Cosmos").Get<CosmosConfiguration>();
-            services.AddSingleton(cosmosConfig);
-            services.AddSingleton<ICosmosClientFactory, CosmosClientFactory>();
-            services.AddScoped(typeof(IRepository<>), typeof(CosmosRepository<>));
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,12 +36,13 @@ namespace CosmosRest.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

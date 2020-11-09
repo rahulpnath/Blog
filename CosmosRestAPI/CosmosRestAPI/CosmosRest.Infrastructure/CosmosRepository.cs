@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Azure.Cosmos;
 using CosmosRest.Domain;
 using CosmosRest.Domain.Aggregates;
-using CosmosRest.Infrastructure.LOR.Forms.Infrastructure.Cosmos;
 
 namespace CosmosRest.Infrastructure
 {

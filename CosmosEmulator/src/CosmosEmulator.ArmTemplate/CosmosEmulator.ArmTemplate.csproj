@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.Cosmos" Version="4.0.0-preview3" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0-rc.2.20475.5" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0-rc.2.20475.5" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0-rc.2.20475.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\deploy\azuredeploy.json">
+        <Link>deploy\azuredeploy.json</Link>
+      </Content>
+      <Content Include="..\..\deploy\azuredeploy.parameters.json">
+        <Link>deploy\azuredeploy.parameters.json</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="appsettings.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>
