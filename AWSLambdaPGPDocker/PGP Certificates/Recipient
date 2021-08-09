@@ -1,0 +1,13 @@
+     %echo Generating a basic OpenPGP key
+     Key-Type: RSA
+     Key-Length: 2048
+     Subkey-Type: RSA
+     Subkey-Length: 2048
+     Name-Real: Recipient
+     Name-Comment: Recipient
+     Name-Email: recipient@email.com
+     Expire-Date: 1y
+     Passphrase: recipient_password
+     # Do a commit here, so that we can later print "done" :-)
+     %commit
+     %echo done
